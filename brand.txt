@@ -1,0 +1,119 @@
+# DeepNet Solutions – Visual Brand Guidelines
+
+---
+
+## 1. Brand Essence
+**Core Idea**: "Clarity & Confidence for Melbourne SMBs" – translating complex cybersecurity into clear, actionable protection.
+
+**Personality**: Strategic · Reassuring · Approachable · Melbourne‑local · Forward‑thinking.
+
+**Tone of Voice**: Plain‑English explanations, lightly technical where needed, always ending with a practical takeaway. Sprinkle in confident, conversational warmth.
+
+---
+
+## 2. Logo System
+### 2.1 Primary Mark  
+The rounded‑square icon with three flowing circuitry lines and node dots, paired with the word‑mark “DeepNet” (bold) over “SOLUTIONS” (tracking +20). Use **Deep Blue #103D6E** on light backgrounds.
+
+### 2.2 Reverse / Mono Variants  
+- **Reverse**: white icon & word‑mark on Deep Blue background.  
+- **Mono**: 100 % black or white when single‑colour reproduction is required.
+
+### 2.3 Clear‑Space  
+Maintain free space equal to the height of the icon’s node circle on all sides.
+
+### 2.4 Minimum Size  
+Digital: 64 px height (logo lock‑up) · Print: 20 mm height.
+
+### 2.5 Don’ts  
+- Don’t stretch, skew, or recolour.  
+- Don’t separate icon and word‑mark except for social favicons.
+
+---
+
+## 3. Colour Palette
+| Role | Swatch | HEX | RGB | Usage |
+|------|--------|-----|-----|-------|
+| **Primary** | ![#103D6E](https://via.placeholder.com/20/103D6E/FFFFFF?text=+) | #103D6E | 16 61 110 | Headlines, logo, primary CTAs |
+| **Accent 1** | ![#1D7ED3](https://via.placeholder.com/20/1D7ED3/FFFFFF?text=+) | #1D7ED3 | 29 126 211 | Links, secondary buttons |
+| **Accent 2** | ![#50C2FF](https://via.placeholder.com/20/50C2FF/FFFFFF?text=+) | #50C2FF | 80 194 255 | Highlight graphics, icons |
+| **Dark BG** | ![#062343](https://via.placeholder.com/20/062343/FFFFFF?text=+) | #062343 | 6 35 67 | Footer, hero overlays |
+| **Neutral 90** | ![#F5F7FA](https://via.placeholder.com/20/F5F7FA/000000?text=+) | #F5F7FA | 245 247 250 | Page backgrounds |
+| **Neutral 60** | ![#D1D5DB](https://via.placeholder.com/20/D1D5DB/000000?text=+) | #D1D5DB | 209 213 219 | Dividers, table rows |
+| **Neutral 10** | ![#111827](https://via.placeholder.com/20/111827/FFFFFF?text=+) | #111827 | 17 24 39 | Body copy |
+
+**Contrast**: Always aim for WCAG AA (≥ 4.5:1) for text.
+
+---
+
+## 4. Typography
+| Use‑case | Typeface | Weight / Style | Size Example |
+|----------|----------|---------------|-------------|
+| Display / H1 | **Poppins** | SemiBold | 48–64 px |
+| Sub‑head / H2‑H3 | Poppins | Medium | 28–40 px |
+| Body | **Open Sans** | Regular | 16–18 px |
+| Emphasis | Open Sans | Semibold | — |
+| Code / CLI | Source Code Pro | Regular | 14 px |
+
+> **System fallback**: “Segoe UI”, “Roboto”, “Helvetica Neue”, Arial, sans‑serif.
+
+---
+
+## 5. Iconography & Illustration
+- **Style**: Simple line icons at 2 px stroke, rounded ends, using Primary or Accent 1.  
+- **Metaphors**: Shields, locks, circuit lines, Melbourne skyline.  
+- **Illustrations**: Flat, minimal; avoid overly abstract 3‑D renders.
+
+---
+
+## 6. Imagery Style
+| Do | Don’t |
+|----|-------|
+| Real‑world Melbourne offices, team collaboration, night skyline with data overlay | Stock clichés of hooded hackers |
+| Cool, desaturated base with Primary or Accent overlay gradients | Oversaturated colour blocking |
+| Confident expressions, natural lighting | Artificial poses or dated tech imagery |
+
+---
+
+## 7. UI Components
+- **Primary Button**:  
+  - Background: Primary #103D6E  
+  - Text: #FFFFFF  
+  - Border‑radius: 8 px  
+  - Hover: darken 6 %
+- **Secondary Button**: Outline 2 px Primary, transparent fill, text Primary.
+- **CTAs**: Pair button with right‑chevron icon.
+- **Forms**: 12‑column grid, 24 px gutters.
+
+---
+
+## 8. Layout & Spacing
+- **Grid**: 12‑column, 72 rem max‑width, 8 px baseline.  
+- **Section Padding**: 80 px desktop · 56 px tablet · 40 px mobile.
+- **Card Radius**: 16 px · Shadow: 0 4 12 px rgba(16,61,110,0.12).
+
+---
+
+## 9. Accessibility Guidelines
+- Maintain keyboard‑navigable focus styles (#1D7ED3 outline).  
+- Provide alt text describing security relevance.  
+- Test colour contrast with internal checker (aim AAA for body copy if possible).
+
+---
+
+## 10. Example Usage
+- **Hero**: Dark BG gradient (#062343→#103D6E), white H1, accent CTA.  
+- **Package Cards**: Neutral 90 background, Primary headline, Accent 2 icons.  
+- **Testimonials**: Light background, icon quotes in Accent 1.
+
+---
+
+## 11. File Formats & Downloads
+- Logo pack (SVG, PNG @1×/2×, EPS)  
+- Favicon 32 × 32 & MaskIcon (Safari)  
+- Colour palette ASE & CSS variables (vars.css)
+
+---
+
+*Last updated: 2025‑04‑22*
+
