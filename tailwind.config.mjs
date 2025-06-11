@@ -1,6 +1,7 @@
 export default {
     content: [
       "./index.html",
+      "./privacy.html",
       "./src/**/*.{js,jsx,ts,tsx}"
     ],
     theme: {
