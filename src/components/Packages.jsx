@@ -59,7 +59,7 @@ export default function Packages() {
                   <li key={f}>{f}</li>
                 ))}
               </ul>
-              <a href="#contact" className="btn-primary self-start text-sm">
+              <a href="/contact" className="btn-primary self-start text-sm">
                 {tier.cta}
               </a>
             </div>
