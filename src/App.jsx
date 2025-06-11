@@ -1,24 +1,19 @@
 import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NavBar from "./components/NavBar.jsx";
-import NewsHeroRSS from "./components/NewsHeroRSS.jsx";
-import Problem from "./components/Problem.jsx";
-import Solution from "./components/Solution.jsx";
-import Packages from "./components/Packages.jsx";
-import WhyChoose from "./components/WhyChoose.jsx";
 import Footer from "./components/Footer.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import ContactPage from "./pages/ContactPage.jsx";
 
 export default function App() {
   return (
-    <>
+    <BrowserRouter>
       <NavBar />
-      <main>
-        <NewsHeroRSS />
-        <Problem />
-        <Solution />
-        <Packages />
-        <WhyChoose />
-      </main>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
       <Footer />
-    </>
+    </BrowserRouter>
   );
 }

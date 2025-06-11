@@ -8,6 +8,7 @@ A modern, responsive website for DeepNet Solutions, a cybersecurity company spec
 - **Modern UI**: Built with Tailwind CSS for a clean, professional look
 - **Fast Performance**: Optimized with Vite for quick loading times
 - **Interactive Elements**: Engaging user experience with React
+- **Contact Page**: Dedicated contact form with validation
 
 ## Tech Stack
 
@@ -95,7 +96,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-For inquiries, please contact [richfish85@gmail.com](mailto:richfish85@gmail.com)
+For inquiries, please contact [staff@deepnet.com.au](mailto:staff@deepnet.com.au)
 
 ## To-Do
 
@@ -105,7 +106,7 @@ For inquiries, please contact [richfish85@gmail.com](mailto:richfish85@gmail.com
 - [ ] Update "Free Consultation" button styling to match other buttons
 
 ### Medium Priority
-- [ ] Add form validation to contact forms
+- [x] Add form validation to contact forms
 - [ ] Implement proper form submission handling
 - [ ] Add loading states for async operations
 

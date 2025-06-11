@@ -8,7 +8,7 @@ export default function Footer() {
           <h3 className="font-display text-xl font-semibold mb-2">DeepNet Solutions</h3>
           <p className="text-sm mb-4">Cybersecurity for Melbourne SMBs.</p>
           <p className="text-sm">Phone: 0466 892 484</p>
-          <p className="text-sm">Email: roosdy@roosdy.dev</p>
+          <p className="text-sm">Email: staff@deepnet.com.au</p>
         </div>
         <div className="md:text-right text-sm space-y-2">
           <a href="#packages" className="block hover:text-brand-accent-2">Packages</a>

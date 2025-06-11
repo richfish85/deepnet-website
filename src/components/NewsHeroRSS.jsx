@@ -120,7 +120,7 @@ export default function NewsHeroRSS() {
         <a href={slide.link} target="_blank" rel="noopener noreferrer" className="btn-primary">
           Read Full Story
         </a>
-        <a href="#contact" className="btn-secondary">
+        <a href="/contact" className="btn-secondary">
           Free Consultation
         </a>
       </div>

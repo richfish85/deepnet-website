@@ -71,8 +71,8 @@ export default function NewsHero() {
           {dayjs(slide.publishedAt).format("D MMM YYYY")} · {slide.source.name}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="#contact" className="btn-primary">Free Consultation</a>
-          <a href="#packages" className="btn-secondary">$400 Promo Scan</a>
+          <a href="/contact" className="btn-primary">Free Consultation</a>
+          <a href="/#packages" className="btn-secondary">$400 Promo Scan</a>
         </div>
       </div>
 
