@@ -100,7 +100,7 @@ For inquiries, please contact [richfish85@gmail.com](mailto:richfish85@gmail.com
 ## To-Do
 
 ### High Priority
-- [ ] Create Privacy Policy page (`/privacy`)
+- [x] Create Privacy Policy page (`/privacy`)
 - [ ] Create Terms of Service page (`/terms`)
 - [ ] Update "Free Consultation" button styling to match other buttons
 
