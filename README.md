@@ -101,9 +101,9 @@ For inquiries, please contact [staff@deepnet.com.au](mailto:staff@deepnet.com.au
 ## To-Do
 
 ### High Priority
-- [ ] Create Privacy Policy page (`/privacy`)
+- [x] Create Privacy Policy page (`/privacy`)
 - [ ] Create Terms of Service page (`/terms`)
-- [ ] Update "Free Consultation" button styling to match other buttons
+ - [x] Update "Free Consultation" button styling to match other buttons
 
 ### Medium Priority
 - [x] Add form validation to contact forms

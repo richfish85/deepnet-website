@@ -121,6 +121,7 @@ export default function NewsHeroRSS() {
           Read Full Story
         </a>
         <a href="/contact" className="btn-secondary">
+        <a href="#contact" className="btn-primary">
           Free Consultation
         </a>
       </div>
