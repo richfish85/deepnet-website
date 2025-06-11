@@ -117,10 +117,14 @@ export default function NewsHeroRSS() {
 
       {/* Fixed CTAs */}
       <div className="relative z-20 flex flex-col sm:flex-row gap-4 justify-center mb-6">
-        <a href={slide.link} target="_blank" rel="noopener noreferrer" className="btn-primary">
+        <a
+          href={slide.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-secondary"
+        >
           Read Full Story
         </a>
-        <a href="/contact" className="btn-secondary">
         <a href="#contact" className="btn-primary">
           Free Consultation
         </a>
