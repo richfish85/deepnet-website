@@ -102,7 +102,7 @@ For inquiries, please contact [richfish85@gmail.com](mailto:richfish85@gmail.com
 ### High Priority
 - [x] Create Privacy Policy page (`/privacy`)
 - [ ] Create Terms of Service page (`/terms`)
-- [ ] Update "Free Consultation" button styling to match other buttons
+ - [x] Update "Free Consultation" button styling to match other buttons
 
 ### Medium Priority
 - [ ] Add form validation to contact forms
