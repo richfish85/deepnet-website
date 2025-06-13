@@ -13,6 +13,7 @@ export default function NavBar() {
         <div className="hidden md:flex space-x-6 font-semibold">
           <a href="/#packages" className="hover:text-brand-accent-1">Packages</a>
           <a href="/#why" className="hover:text-brand-accent-1">Why DeepNet</a>
+          <a href="/toolkit" className="hover:underline">Free Toolkit</a>
           <Link to="/contact" className="hover:text-brand-accent-1">Contact</Link>
         </div>
         <Link to="/contact" className="btn-primary text-sm">Free Consultation</Link>
