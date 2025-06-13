@@ -7,20 +7,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        main: 'index.html',
-        privacy: 'privacy.html'
+        main: resolve(__dirname, 'index.html'),
+        privacy: resolve(__dirname, 'privacy.html'),
+        terms: resolve(__dirname, 'terms/index.html'),
       }
     }
   },
   server: {
     open: true,
-  },
-  build: {
-    rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html'),
-        terms: resolve(__dirname, 'terms/index.html'),
-      },
-    },
   },
 });
