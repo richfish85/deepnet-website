@@ -12,3 +12,20 @@
     @apply inline-flex items-center justify-center px-6 py-3 rounded-md font-semibold border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white transition;
   }
 }
+
+.particle {
+  position: absolute;
+  bottom: -10px;
+  width: 2px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.6);
+  animation: rise linear infinite;
+  border-radius: 1px;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
