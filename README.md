@@ -29,7 +29,7 @@ A modern, responsive website for DeepNet Solutions, a cybersecurity company spec
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/deepnet-solutions.git
+   git clone https://github.com/richfish85/deepnet-website.git
    cd deepnet-solutions
    ```
 
