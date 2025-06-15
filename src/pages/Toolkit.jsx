@@ -4,56 +4,60 @@ export default function ToolkitPage() {
   const [unlocked, setUnlocked] = useState(false);
 
   return (
-    <section className="min-h-[80vh] bg-white py-20 px-6 max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6 text-center">
-        Free Security HealthCheck Toolkit
-      </h1>
-      <p className="mb-4 text-center text-gray-700">
-        Download a 1-page audit checklist to help you protect your business, devices, and identity — in under 15 minutes.
-      </p>
+    <section className="min-h-screen py-20 px-6 bg-white">
+      <div className="max-w-xl mx-auto">
+        <h1 className="text-3xl font-semibold mb-4">
+          🧰 Download Your Free Cybersecurity HealthCheck Toolkit
+        </h1>
+        <p className="mb-6 text-gray-700">
+          This 1-page interactive PDF helps you self-audit your device, network,
+          and personal security hygiene in just 15 minutes — ideal for individuals,
+          remote workers, and small businesses.
+        </p>
 
-      {!unlocked ? (
-        <form
-          action="https://formspree.io/f/mblyoebn"
-          method="POST"
-          onSubmit={() => setUnlocked(true)}
-          className="space-y-4"
-        >
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email Address"
-            required
-            className="w-full p-2 border border-gray-300 rounded"
-          />
-          <button type="submit" className="btn-primary w-full">
-            Get the Free Toolkit
-          </button>
-          <p className="text-xs text-gray-500 mt-2">
-            We don’t spam. Unsubscribe any time.
-          </p>
-        </form>
-      ) : (
-        <div className="text-center mt-8">
-          <p className="mb-4 text-green-700 font-semibold">
-            ✅ You're in! Click below to download:
-          </p>
-          <a
-            href="/files/DeepNet_HealthCheck_Interactive.pdf"
-            download
-            className="btn-primary"
+        {!unlocked ? (
+          <form
+            action="https://formspree.io/f/mblyoebn"
+            method="POST"
+            onSubmit={() => setUnlocked(true)}
+            className="space-y-4"
           >
-            🧰 Download HealthCheck PDF
-          </a>
-        </div>
-      )}
+            <input
+              type="text"
+              name="name"
+              required
+              placeholder="Your Name"
+              className="w-full border p-2 rounded"
+            />
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="Email Address"
+              className="w-full border p-2 rounded"
+            />
+            <button
+              type="submit"
+              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            >
+              Get the PDF
+            </button>
+          </form>
+        ) : (
+          <div className="mt-6 p-4 bg-green-100 text-green-700 rounded">
+            ✅ Thank you! Click below to download your toolkit.
+            <div className="mt-4">
+              <a
+                href="/files/DeepNet_HealthCheck_Interactive.pdf"
+                download
+                className="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              >
+                📥 Download PDF
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
     </section>
   );
 }
