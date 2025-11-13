@@ -2,39 +2,65 @@ import React from "react";
 
 const tiers = [
   {
-    name: "Basic Scan",
+    name: "Front Door™ Scan",
     price: "$400",
-    description: "Automated external scan to uncover common vulnerabilities.",
+    description: "A fast, affordable diagnostic for small businesses who want clarity on external risks before committing to bigger solutions.",
     features: [
-      "Website & internet‑facing assets",
-      "Simple, easy‑to‑read report",
-      "Quick recommendations"
+      "External vulnerability scan",
+      "Website & internet-facing asset sweep",
+      "Simple, actionable report",
+      "Prioritised quick-fix recommendations",
+      "Perfect entry-point for new clients"
     ],
-    cta: "Get Promo Scan"
+    cta: "Get Front Door™ Scan"
   },
+
   {
-    name: "Comprehensive Assessment",
-    price: "From $3,000",
-    description: "In‑depth internal & external analysis with compliance checks.",
+    name: "CyberGuard Core™",
+    price: "$1,450",
+    description: "A comprehensive internal and external security assessment for businesses ready to understand their real risk posture.",
     features: [
-      "Vulnerability scanning & penetration test",
-      "Compliance mapping (Privacy Act, PCI)",
-      "Detailed remediation roadmap"
+      "Internal & external vulnerability assessment",
+      "Lightweight penetration test",
+      "Security posture evaluation",
+      "Full remediation roadmap",
+      "Compliance alignment (Privacy Act, Essential Eight)",
+      "Ideal foundation for ongoing security"
     ],
-    cta: "Request Quote"
+    cta: "Book CyberGuard Core™"
   },
+
   {
-    name: "Managed Security",
-    price: "From $1,500/mo",
-    description: "Continuous monitoring, MDR & regular testing.",
+    name: "CyberShield 360™",
+    price: "$3,200/mo",
+    description: "Full-spectrum managed security: continuous monitoring, regular testing, and priority response. Your outsourced security team.",
     features: [
-      "24/7 security monitoring",
+      "24/7 monitoring & alerting (MDR-style)",
       "Monthly penetration testing",
-      "Dedicated incident support"
+      "Hardening & patch guidance",
+      "Incident support & containment",
+      "(Quarterly optional) executive reports",
+      "Perfect for businesses without internal security staff"
     ],
-    cta: "Free Consultation"
+    cta: "Start CyberShield 360™"
+  },
+
+  {
+    name: "DeepNet Infrastructure™",
+    price: "Custom Quote",
+    description: "A business continuity and resilience program covering backups, disaster recovery, secure infrastructure design, and post-incident rebuilds.",
+    features: [
+      "Business continuity & disaster recovery planning",
+      "Automated & verified backups",
+      "Secure infrastructure redesign",
+      "Post-incident rebuild & hardening",
+      "Cloud / on-prem / hybrid support",
+      "High-availability and resilience engineering"
+    ],
+    cta: "Request Infrastructure Plan"
   }
 ];
+
 
 export default function Packages() {
   return (
