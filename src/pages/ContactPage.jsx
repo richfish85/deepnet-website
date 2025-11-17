@@ -1,12 +1,30 @@
-import React, { useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 export default function ContactPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const location = useLocation();
+  const prefilledDescription = useMemo(() => {
+    if (location.state?.offerName) {
+      return location.state.offerName;
+    }
+    const params = new URLSearchParams(location.search || "");
+    const offerSlug = params.get("offer");
+    if (!offerSlug) return "";
+    return productNameFromSlug(offerSlug);
+  }, [location]);
+  const [description, setDescription] = useState(prefilledDescription || "");
   const [message, setMessage] = useState("");
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (prefilledDescription) {
+      setDescription(prefilledDescription);
+    }
+  }, [prefilledDescription]);
 
   function validate() {
     const newErrors = {};
@@ -36,6 +54,7 @@ export default function ContactPage() {
         body: JSON.stringify({
           name,
           email,
+          description,
           message
         })
       });
@@ -45,6 +64,7 @@ export default function ContactPage() {
         setName("");
         setEmail("");
         setMessage("");
+        setDescription(prefilledDescription || "");
         setErrors({});
       } else {
         alert("There was a problem sending your message. Please try again.");
@@ -97,6 +117,18 @@ export default function ContactPage() {
               )}
             </div>
             <div>
+              <label className="block text-sm font-medium mb-1" htmlFor="description">
+                Description
+              </label>
+              <input
+                id="description"
+                className="w-full border border-neutral-70 rounded-md p-2"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Which service or issue should we focus on?"
+              />
+            </div>
+            <div>
               <label className="block text-sm font-medium mb-1" htmlFor="message">
                 Message
               </label>
@@ -123,4 +155,14 @@ export default function ContactPage() {
       </div>
     </section>
   );
+}
+
+function productNameFromSlug(slug) {
+  const map = {
+    "front-door-scan": "Front Door™ Scan",
+    "cyberguard-core": "CyberGuard Core™",
+    "cybershield-360": "CyberShield 360™",
+    "deepnet-infrastructure": "DeepNet Infrastructure™"
+  };
+  return map[slug] || slug;
 }

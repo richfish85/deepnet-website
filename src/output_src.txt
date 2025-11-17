@@ -1,0 +1,69 @@
+Folder PATH listing for volume OS
+Volume serial number is 0065006E 30CB:2021
+C:.
+|   App.jsx
+|   index.css
+|   main.jsx
+|   output.txt
+|   privacy.jsx
+|   terms.jsx
+|   
++---app
+|   \---docs
+|       |   page.tsx
+|       |   
+|       \---[...slug]
+|               page.tsx
+|               
++---assets
+|       grid.svg
+|       logo.svg
+|       logo_full.svg
+|       logo_text.svg
+|       
++---components
+|       Footer.jsx
+|       Hero.jsx
+|       HeroAnimated.jsx
+|       NavBar.jsx
+|       NewsHeroRSSAnimated.jsx
+|       Packages.jsx
+|       Problem.jsx
+|       Solution.jsx
+|       WhyChoose.jsx
+|       
++---content
+|   +---docs
+|   |   +---blue-team
+|   |   |       detection-engineering-101.mdx
+|   |   |       siem-intro.mdx
+|   |   |       
+|   |   +---foundations
+|   |   |       cpu-internals.mdx
+|   |   |       linux-boot.mdx
+|   |   |       windows-boot.mdx
+|   |   |       
+|   |   +---labs
+|   |   |       ad-lab-overview.mdx
+|   |   |       siem-lab-intro.mdx
+|   |   |       
+|   |   \---red-team
+|   |           recon-101.mdx
+|   |           
+|   \---meta
+|           docs-nav.yaml
+|           
++---hooks
+|       useCarousel.js
+|       
++---lib
+|       docs.js
+|       mdx-runtime.js
+|       
+\---pages
+        ContactPage.jsx
+        HomePage.jsx
+        Privacy.jsx
+        Terms.jsx
+        Toolkit.jsx
+        

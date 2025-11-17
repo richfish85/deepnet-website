@@ -1,0 +1,16 @@
+mappings:
+  - doc: cpu-internals
+    funnel: cpu-internals
+    product: cyberguard-core
+  - doc: windows-boot-sequence
+    funnel: windows-boot-sequence
+    product: cyberguard-core
+  - doc: recon-101
+    funnel: recon-101
+    product: cybershield-360
+  - doc: ad-lab-overview
+    funnel: ad-lab-overview
+    product: cyberguard-core
+  - doc: siem-lab-intro
+    funnel: siem-lab-intro
+    product: cybershield-360

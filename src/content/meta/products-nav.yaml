@@ -1,0 +1,13 @@
+products:
+  - slug: front-door-scan
+    title: "Front Door™ Scan"
+    tier: "Discovery"
+  - slug: cyberguard-core
+    title: "CyberGuard Core™"
+    tier: "Assessment"
+  - slug: cybershield-360
+    title: "CyberShield 360™"
+    tier: "Managed"
+  - slug: deepnet-infrastructure
+    title: "DeepNet Infrastructure™"
+    tier: "Resilience"
