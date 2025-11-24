@@ -1,9 +1,154 @@
 ---
-title: "CPU Internals Funnel"
-slug: "cpu-internals"
-docSlug: "cpu-internals"
-productSlug: "cyberguard-core"
-cta: "Book CyberGuard Core"
+doc_slug: "cpu-internals"
+product_slug: "cyberguard-core"
+video_title: "CPU Internals For Cybersecurity: Pipelines, Caches, Rings"
+thumbnail_hook: "Your CPU is leaking more than you think."
 ---
 
-Outline hooks for a video plus CTA copy.
+## Video Script Outline
+
+### 1. Hook (0:00–0:20)
+
+- Visual: quick montage of code, CPU die, glitchy screen.
+- Line idea:
+  - "Your CPU is doing far more than 'just running code'. It is making security promises on every clock cycle - and sometimes those promises break."
+
+### 2. The Problem (0:20–1:15)
+
+- Most training materials stop at "CPU is the brain".
+- Security people hear about Spectre, side channels, privilege escalation, but it feels abstract.
+- Viewers struggle to connect:
+  - pipelines
+  - caches
+  - privilege rings  
+  to real world exploits.
+
+Key line:
+
+- "If you do not understand how your CPU really behaves, reports about 'microarchitectural flaws' just look like noise."
+
+### 3. The Core Explanation (1:15–5:30)
+
+Break into three simple blocks:
+
+1. **Instruction cycle and control flow**
+   - Program Counter, fetch decode execute.
+   - Why control of the instruction pointer is a big deal.
+
+2. **Pipelines and speculation**
+   - CPU guesses ahead for speed.
+   - Wrong guesses leave traces.
+   - This is where speculative execution bugs live conceptually.
+
+3. **Caches and rings**
+   - Caches: fast memory with observable timing differences.
+   - Rings / modes: hardware enforced "who is allowed to do what".
+
+Use one simple supporting example, not a full exploit:
+
+- E.g. "If a secret only lives in a certain cache line, a timing difference can reveal whether code touched that secret."
+
+### 4. Tie Back To Security (5:30–6:30)
+
+- Explain that many exploit writeups are just:
+  - "We tricked the CPU into doing something fast but unsafe."
+- As a defender:
+  - You do not patch silicon.
+  - You configure systems and interpret risk.
+
+Emphasise:
+
+- "Knowing these basics lets you read vulnerability advisories with confidence and push back on both alarmism and minimisation."
+
+### 5. Soft CTA To DeepNet Doc (6:30–7:00)
+
+- "If you want the full blueprint, with diagrams you can reuse in your own notes or team training, I have written a free CPU Internals guide in the DeepNet Docs."
+- On screen: URL to `/docs/foundations/cpu-internals`.
+
+Optional variant:
+
+- "If you are a Melbourne based business and want this kind of clarity applied to your actual environment, this is one of the core building blocks inside our CyberGuard Core assessment."
+
+---
+
+## Medium Article Outline
+
+### Working Title
+
+> "CPU Internals For Defenders: Why Pipelines, Caches And Rings Matter"
+
+### Sections
+
+1. **Opening story / scenario**
+   - Analyst reading about a new Spectre style bug and feeling lost.
+   - Short, grounded, not hype.
+
+2. **The CPU as a security component**
+   - Reframe from "performance box" to "hardware policy engine".
+
+3. **Three concepts you actually need**
+   - Instruction cycle and control flow.
+   - Pipelines and speculation.
+   - Caches and privilege rings.
+
+4. **How these appear in real world bugs**
+   - High level mapping, no need to reproduce PoC code.
+
+5. **What a defender should do with this knowledge**
+   - Better risk interpretation.
+   - Better conversations with management.
+   - Understanding when hardening recommendations are realistic.
+
+6. **Call to action**
+   - Link to the DeepNet CPU Internals doc for diagrams and a more structured walkthrough.
+   - Soft link to CyberGuard Core for readers who run an environment and need practical help.
+
+---
+
+## X / Twitter Content Ideas
+
+### Short Thread 1: "The CPU Is A Security Boundary"
+
+1. "Most cyber diagrams treat the CPU like a black box. For defenders, that is a mistake."
+2. "The CPU decides:
+   - which instructions run,
+   - at what privilege level,
+   - and how memory access is enforced."
+3. "Three concepts worth learning:
+   - instruction pipelines
+   - caches
+   - privilege rings"
+4. "You do not need to be a chip designer. You just need enough intuition to understand:
+   - why speculative execution bugs matter
+   - why some side channels are realistic in your environment and others are not."
+5. "If you want a clean, security focused walkthrough, I wrote up a free CPU Internals doc you can read here: [link]."
+
+---
+
+### Short Post 2: Cache Side Channels
+
+- "Any time performance depends on secret data paths, you are flirting with a side channel. Caches trade speed for complexity, and attackers live in that complexity."
+
+CTA: link back to the doc.
+
+---
+
+### Short Post 3: For Business Owners
+
+- "Not every 'CPU bug' is a reason to panic. The real question is:  
+  - Does this class of attack work in your environment, with your OS, your hardware and your exposure?  
+  That is exactly what we unpack during a CyberGuard Core assessment."
+
+---
+
+## Notes For You As Creator
+
+- You can reuse this structure for every foundations level doc:
+  - 1 video outline
+  - 1 Medium outline
+  - 2–3 X post ideas
+- When you record, aim for:
+  - 6 to 8 minutes,
+  - one core diagram on screen,
+  - a calm, teacherly tone rather than hype.
+

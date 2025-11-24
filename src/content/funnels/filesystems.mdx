@@ -1,0 +1,107 @@
+---
+doc_slug: "filesystems"
+product_slug: "cyberguard-core"
+video_title: "Filesystems Explained: How OSes Store and Protect Data"
+thumbnail_hook: "Your disk isn’t a folder. It’s a map of trust — and attackers know every shortcut."
+---
+
+## Video Script Outline
+
+### 1. Hook (0:00–0:20)
+
+- “Everything you investigate — logs, binaries, persistence — lives inside a filesystem.”
+- “If you don’t understand how storage works, you miss half the attack surface.”
+
+---
+
+### 2. The Problem (0:20–1:15)
+
+Beginners think:
+
+- filesystems = folders  
+- deletion = gone  
+- timestamps = reliable  
+- permissions = copies from Windows Explorer  
+
+But in reality:
+
+- deletion just removes directory references  
+- metadata persists  
+- permissions are layered  
+- attackers abuse features most people never see  
+
+---
+
+### 3. Teaching Blocks (1:15–5:30)
+
+Focus on five short beats:
+
+1. **Filesystem purpose**  
+2. **Inodes & MFT**  
+3. **Timestamps & metadata**  
+4. **Journaling & recovery**  
+5. **Permissions & ACLs**
+
+One example to illustrate:
+
+- Hidden payload inside NTFS ADS  
+- Or a tampered SUID binary  
+
+Both simple, strong teaching moments.
+
+---
+
+### 4. Security Angle (5:30–6:30)
+
+“Your filesystem *is* the attack surface.”  
+Explain quickly:
+
+- persistence  
+- tampering  
+- forensics  
+- privilege escalation  
+- hidden payloads  
+- evidence recovery  
+
+---
+
+### 5. Soft CTA (6:30–7:00)
+
+- “Full diagrams and details are inside the DeepNet Filesystems guide.”
+- “This is one of the things we examine inside CyberGuard Core to uncover hidden risks in client environments.”
+
+---
+
+## Medium Article Outline
+
+### Title Options
+- “Filesystems for Cyber Defenders”
+- “Inodes, MFT, Metadata: How Storage Actually Works”
+- “Understanding Filesystems Makes You Better at Security”
+
+### Structure
+
+1. Pain point  
+2. Linux vs Windows high-level  
+3. Metadata importance  
+4. Journaling  
+5. Persistence risks  
+6. Defender priorities  
+7. CTA to docs  
+8. Soft CTA to CyberGuard Core  
+
+---
+
+## X / Twitter Ideas
+
+### Thread:
+1. “Your filesystem is a database.”  
+2. Inodes/MFT explained simply  
+3. Timestamps as forensic clues  
+4. Journaling as recovery  
+5. Hidden payloads  
+6. Permission pitfalls  
+7. CTA → Filesystems doc  
+
+### Micro-post:
+“Deletion doesn’t delete. It disconnects. Inodes/MFT still hold the truth.”  

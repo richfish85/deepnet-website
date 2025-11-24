@@ -1,9 +1,139 @@
 ---
-title: "Windows Boot Funnel"
-slug: "windows-boot-sequence"
-docSlug: "windows-boot-sequence"
-productSlug: "cyberguard-core"
-cta: "Secure the boot chain"
+doc_slug: "windows-boot-sequence"
+product_slug: "cyberguard-core"
+video_title: "How Windows Boots: Explained for Cybersecurity Roles"
+thumbnail_hook: "Booting Windows is a 5-stage trust chain. Here’s why it matters."
 ---
 
-Explain how defenders can harden devices.
+## Video Script Outline
+
+### 1. Hook (0:00–0:20)
+
+Lines you can use:
+
+- “Every time your PC starts, it walks through a trust chain that determines who controls the machine.”
+- “If attackers break in early enough, there is no antivirus, no EDR, no defender who can stop them.”
+
+Visuals:  
+UEFI → bootmgr → winload → kernel → login screen.
+
+---
+
+### 2. The Problem (0:20–1:15)
+
+The boot chain is:
+
+- unseen,  
+- misunderstood,  
+- and absolutely critical for evaluating real security posture.
+
+Viewers typically don’t know:
+
+- what firmware actually does,
+- how Secure Boot enforces trust,
+- where bootkits live,
+- or why drivers matter *before* Windows fully loads.
+
+---
+
+### 3. The Core Teaching (1:15–5:30)
+
+Break it into 5 beats:
+
+1. **UEFI Firmware**  
+   - Initialization  
+   - Secure Boot  
+   - Root-of-trust  
+
+2. **Windows Boot Manager (bootmgr)**  
+   - Reads BCD  
+   - Decides OS paths  
+
+3. **Winload.exe**  
+   - Loads kernel + drivers  
+   - Prepares HAL  
+   - Sets up memory  
+
+4. **Kernel Initialization**  
+   - Schedulers  
+   - Memory manager  
+   - Kernel structures  
+
+5. **smss.exe → winlogon → user session**  
+   - Services  
+   - LSASS  
+   - Login  
+
+Each beat gets one articulate sentence + one security implication.
+
+---
+
+### 4. Security Angle (5:30–6:30)
+
+Explain:
+
+- Where attackers hide (firmware → bootloader → drivers).
+- Why early compromise beats all detection.
+- How defenders map risks back to actual boot stages.
+
+Key line:
+
+- “Understanding this chain lets you interpret vulnerability reports accurately, instead of guessing based on headlines.”
+
+---
+
+### 5. Soft CTA (6:30–7:00)
+
+Two variants:
+
+**For general viewers:**  
+“If you want diagrams and a clear walkthrough of each phase, I wrote a full guide in the DeepNet Docs.”
+
+**For business owners:**  
+“For Melbourne SMBs, this is one of the core checks inside our CyberGuard Core assessment.”
+
+---
+
+## Medium Article Outline
+
+### Title Options
+- “Windows Boot Sequence for Cybersecurity Analysts”
+- “The Five Stages of Windows Boot — and Where Attackers Hide”
+- “Secure Boot, Winload, and the Kernel: A Practical Guide”
+
+### Sections
+1. Why boot flow matters  
+2. Stage-by-stage walkthrough  
+3. Where attackers gain persistence  
+4. What defenders can realistically check  
+5. CTA → DeepNet Docs  
+6. Soft CTA → CyberGuard Core  
+
+---
+
+## X / Twitter Ideas
+
+### Thread 1: “Windows Boot Sequence: Security Edition”
+
+1. “Most analysts learn Windows **after** it starts. Let’s look at what happens *before* that.”
+2. “UEFI is the true root-of-trust.”  
+3. “bootmgr decides what OS to load.”  
+4. “winload loads kernel + drivers.”  
+5. “Kernel sets hardware policy.”  
+6. “smss.exe → winlogon → LSASS.”  
+7. “Every stage has attack surfaces.”  
+8. Link to doc.
+
+---
+
+### Micro-post #1:
+“Secure Boot isn’t about stopping malware *in Windows*.  
+It’s about stopping malware *before* Windows even exists.”
+
+---
+
+### Micro-post #2:
+“If your boot chain is compromised, your OS cannot save you. Never treat signed drivers and firmware updates as optional.”
+
+CTA link.
+

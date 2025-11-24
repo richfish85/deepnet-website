@@ -1,11 +1,273 @@
 ---
-title: "File Systems for Defenders"
+title: "Filesystems & Storage Paths (Deep Dive)"
 slug: "filesystems"
 category: "foundations"
 tier: "free"
 product: "cyberguard-core"
 duration: "20 min"
 level: "Intermediate"
+tags:
+  - filesystem
+  - storage
+  - forensics
+  - linux
+  - windows
+summary: "Understand how filesystems translate raw bytes into structured data. Learn directories, inodes, metadata, ACLs, journaling, and how attackers abuse storage internals."
 ---
 
-Look at NTFS, ext4, and APFS internals through the lens of persistence and forensic hooks.
+## Why Filesystems Matter in Cybersecurity
+
+Every log, process, binary, credential, and configuration you’ll investigate lives inside a filesystem.  
+Understanding filesystems helps you:
+
+- interpret forensic artifacts  
+- understand persistence techniques  
+- debug corruption or tampering  
+- detect deleted-but-recoverable files  
+- read kernel and driver behaviours  
+- understand how OSes enforce permissions  
+
+A filesystem is not “just folders”.  
+It is a **structured map of reality** the OS depends on.
+
+---
+
+## What a Filesystem Actually Does
+
+A filesystem converts raw storage (blocks on a disk) into:
+
+- files  
+- directories  
+- metadata  
+- permissions  
+- timestamps  
+- indexes  
+
+It handles:
+
+- how data is allocated  
+- how data is retrieved  
+- how fragmentation is handled  
+- how crashes are recovered  
+- how permissions are enforced  
+
+Think of it as:
+
+> A database the OS uses to store the entire world.
+
+---
+
+## Common Filesystems (Windows & Linux)
+
+### **Windows**
+- **NTFS** (modern default)
+- FAT32 / exFAT (USB drives, older systems)
+
+Key features:
+- Master File Table (MFT)  
+- Journaling  
+- Alternate Data Streams (ADS)  
+- Access Control Lists (ACLs)  
+- Transaction Safe File System (TxF)  
+
+Security relevance:
+- ADS is used by attackers to hide payloads  
+- MFT timestamps are critical in forensics  
+- NTFS permissions define Windows privilege boundaries  
+
+---
+
+### **Linux**
+- ext4 (most common)
+- XFS (Red Hat, performance workloads)
+- Btrfs (snapshots, CoW)
+- ZFS (checksumming, enterprise storage)
+
+Key differences vs Windows:
+- Inode-based structure  
+- Permissions: rwx + UID/GID  
+- Mount options control behaviour  
+- Journaling mode variations  
+- Case sensitivity  
+
+Security relevance:
+- Wrong mount flags can break isolation  
+- Inode reuse helps recovery in investigations  
+- Tampering with extended attributes affects SELinux/AppArmor  
+- Bad permissions cascade into privilege escalation chains  
+
+---
+
+## The Inode Model (Linux)
+
+Linux filesystems use **inodes**, which are structures containing:
+
+- file type  
+- file size  
+- permissions  
+- owner/group  
+- timestamps  
+- pointers to data blocks  
+
+Directories are basically **lists of filename → inode number**.
+
+Security relevance:
+
+- Removing a filename doesn’t remove its inode  
+- Deleted files may remain recoverable  
+- Attackers hide payloads in inode space  
+- Forensics: inode timestamps show real modification order  
+
+---
+
+## File Metadata & Timestamps
+
+Important timestamps:
+
+- **ctime**: metadata change  
+- **mtime**: content modification  
+- **atime**: last access  
+- **btime**: creation (not always tracked)
+
+Forensics trick attackers use:
+
+- modifying timestamps to hide tracks  
+- timestomping  
+- abusing backup/restore to rewrite metadata  
+- using tools that avoid updating atime  
+
+Defender insight:
+
+> Understanding these timestamps helps detect tampering and timeline inconsistencies.
+
+---
+
+## Journaling & Crash Recovery
+
+Journaling filesystems (NTFS, ext4, XFS) keep a log of changes *before* applying them.
+
+Modes:
+
+- **Metadata journaling** (ext4 default)  
+- **Full data journaling**  
+- **Writeback mode** (fast but risky)  
+
+Security impacts:
+
+- Journals can reveal deleted or tampered changes  
+- Unexpected journal entries → potential malware or rootkit activity  
+- Forensics tools extract journal data to rebuild timelines  
+
+---
+
+## Windows: Master File Table (MFT)
+
+The beating heart of NTFS.
+
+Each file = a record in the MFT.  
+Each record contains:
+
+- attributes  
+- timestamps  
+- permissions  
+- ADS pointers  
+- file fragments  
+
+Why defenders care:
+
+- MFT inconsistencies can signal tampering  
+- ADS is used to hide:
+  - payloads  
+  - scripts  
+  - configuration data  
+- MFT is a goldmine in forensic investigations  
+
+Example ADS usage by attackers:
+
+echo "malicious content" > legitfile.txt:hiddenpayload
+
+
+---
+
+## Permissions & Access Control
+
+### **Windows: ACLs**
+- file → SIDs → privileges → inheritance  
+- misconfigured ACLs enable lateral movement  
+- NTFS permissions override share permissions  
+
+### **Linux: rwx + UID/GID**
+- sticky bit  
+- SUID/SGID bits  
+- special bits used in escalation attacks  
+- ACLs via POSIX extended attributes  
+
+Defenders must know:
+
+- how privilege boundaries are defined  
+- how misconfigurations enable escalation  
+- how files inherit permissions across directories  
+
+---
+
+## Persistence & Attack Vectors
+
+Attackers abuse filesystems by:
+
+- placing malicious binaries in PATH directories  
+- abusing startup folders / autoruns  
+- injecting into initramfs (Linux)  
+- using ADS to hide payloads (Windows)  
+- abusing SUID binaries (Linux)  
+- creating rogue systemd unit files  
+- replacing legitimate binaries  
+
+Filesystem-level IOC examples:
+
+- unexpected hidden files  
+- mismatched timestamps  
+- missing integrity checksums  
+- tampered ACL entries  
+- orphaned inodes  
+
+---
+
+## Defender Priorities (CyberGuard Core™)
+
+During a Core assessment, filesystem knowledge helps map:
+
+- tampering in `/etc` on Linux  
+- integrity of system-level binaries  
+- MFT irregularities  
+- dangerous SUID binaries  
+- unknown startup entries  
+- misconfigured mount points  
+- LUKS / BitLocker configuration  
+- unexpected ADS streams  
+- broken permission inheritance  
+
+Outputs:
+
+- remediation steps for storage hardening  
+- ACL corrections  
+- recommended filesystem-level auditing  
+- clear, plain-language summaries for stakeholders  
+
+---
+
+## Summary & Next Steps
+
+You now understand:
+
+- how filesystems structure and store data  
+- how Linux and Windows differ  
+- what metadata matters  
+- where early tampering hides  
+- how filesystem issues shape forensics  
+
+Suggested next docs:
+
+- **Memory Layout & Address Spaces**  
+- **Processes & Threads**  
+- **Syscalls & Kernel Transitions**  
+- **Privilege Escalation 101**

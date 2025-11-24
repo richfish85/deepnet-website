@@ -2,11 +2,233 @@
 title: "CPU Internals"
 slug: "cpu-internals"
 category: "foundations"
-tier: "free"
-product: "cyberguard-core"
+tier: "free"                 
+product: "cyberguard-core"   
 duration: "20 min"
 level: "Intermediate"
+tags:
+  - cpu
+  - architecture
+  - exploitation
+  - performance
+summary: "Explore how instruction pipelines, caches, and privilege rings shape exploit scenarios. Use this doc as the base reference for low level performance and security conversations across other tracks."
 ---
 
-Explore how instruction pipelines, caches, and privilege rings shape exploit scenarios. Use this doc to
-anchor all low-level performance and security conversations across other tracks.
+## Why the CPU Matters For Security
+
+Most cyber explanations stop at "the CPU is the brain of the computer".  
+For defenders and attackers, that is not enough.
+
+In this doc you will:
+
+- Build an intuition for what the CPU actually does each cycle.
+- See how design choices around pipelines, caches and privilege rings affect security.
+- Link CPU behavior to real world exploit classes and detection opportunities.
+- Use this as a mental base-layer for later docs on memory, syscalls and privilege escalation.
+
+---
+
+## Big Picture: Where The CPU Sits
+
+At a high level, the CPU is:
+
+- The component that executes instructions.
+- The coordinator between memory, storage and devices.
+- The enforcer of privilege boundaries at the hardware level.
+
+Key relationships:
+
+- **CPU ↔ RAM**: where instructions and data are fetched from.
+- **CPU ↔ storage**: where programs and OS images live long term.
+- **CPU ↔ devices**: input and output via buses and controllers.
+- **CPU ↔ OS kernel**: the kernel configures the CPU and relies on it to enforce isolation.
+
+> Mental model: The CPU is the "contract enforcer" between software and reality.
+
+---
+
+## Execution Basics: The Instruction Cycle
+
+Classic cycle:
+
+1. **Fetch** - load the next instruction from memory.
+2. **Decode** - interpret what the instruction means.
+3. **Execute** - perform the operation (ALU, branch, memory access).
+4. **Write back** - store results in registers or memory.
+5. **Update PC (Program Counter)** - decide what to run next.
+
+Security hooks:
+
+- Control of the Program Counter is core to many exploits.
+- Anything that manipulates which instructions run next is a potential attack surface.
+
+---
+
+## Pipelines: Making The CPU Go Faster (and Weirder)
+
+Modern CPUs do not wait for one instruction to finish before starting the next.  
+They use a **pipeline**: multiple stages working on different instructions at once.
+
+Typical stages:
+
+- Fetch
+- Decode
+- Execute
+- Memory access
+- Write back
+
+Why this matters:
+
+- Performance: more instructions completed per clock.
+- Complexity: hazards when instructions depend on each other.
+- Security: speculative and out of order execution can leak secrets.
+
+Security connections:
+
+- Branch prediction and speculative execution can be abused in side channel attacks.
+- Mis-predicted paths are "rolled back" logically, but microarchitectural traces remain.
+
+You do not need to memorise the stages. You just need to remember:
+
+> Pipelines trade simplicity for speed, and complexity creates new side channels.
+
+---
+
+## Caches: Where Speed Meets Side Channels
+
+Caches are small, fast memory inside or very close to the CPU.
+
+Layers:
+
+- L1 - extremely fast, very small.
+- L2 - slightly slower, larger.
+- L3 - shared across cores, bigger again.
+
+Purpose:
+
+- Keep recently or frequently used data close to the CPU.
+- Avoid slow round trips to main memory.
+
+Security angles:
+
+- Cache hits vs misses have different timing.
+- Attackers can measure those timing differences.
+- Techniques like **Flush+Reload** and **Prime+Probe** use cache behavior to infer secrets.
+
+Key takeaway:
+
+> Any time speed depends on secret data paths, you have a potential side channel.
+
+---
+
+## Privilege Levels: Rings and Modes
+
+Operating systems rely on the CPU to enforce privilege separation.
+
+Common model:
+
+- **Ring 0 / Kernel mode**:
+  - Full access to hardware.
+  - Can configure memory protection and devices.
+- **Ring 3 / User mode**:
+  - Restricted.
+  - Must ask the kernel for privileged operations.
+
+Mechanisms:
+
+- Special instructions that are only allowed in kernel mode.
+- Page tables and memory protection enforced by the CPU.
+- Controlled transitions between user and kernel via **interrupts** and **syscalls**.
+
+Security implications:
+
+- If an attacker can execute kernel-mode instructions, the game is over.
+- Many exploits aim to:
+  - Execute arbitrary code in kernel context, or
+  - Trick the kernel into doing something on their behalf.
+
+---
+
+## CPU, Memory and Isolation
+
+To really secure systems, we care about how the CPU:
+
+- Interprets page tables.
+- Enforces read / write / execute permissions.
+- Handles context switches between processes.
+- Saves and restores register state across threads.
+
+Common misconfigurations and risks:
+
+- Executable memory where it should be data only.
+- Writable code pages.
+- Incorrectly configured page permissions.
+- Lack of hardware-enforced isolation features being used by the OS.
+
+Tie in to later docs:
+
+- **Memory Layout & Address Spaces**
+- **System Calls & Kernel Transitions**
+- **Privilege Escalation 101**
+
+---
+
+## Exploit Surfaces Related To CPU Behavior
+
+You will encounter these classes again in later Red and Blue Team docs:
+
+- **Control flow hijacking**:
+  - Overwriting return addresses or function pointers.
+  - Abusing how the CPU uses the stack and registers.
+
+- **Speculative execution attacks**:
+  - Spectre-style patterns where speculative paths read sensitive data.
+  - The architectural state is rolled back, microarchitectural state is not.
+
+- **Timing and cache side channels**:
+  - Using cache hits / misses to infer secrets.
+  - Cross process and sometimes cross VM information leaks.
+
+- **Rowhammer-style behavior**:
+  - Not strictly CPU logic, but CPU driven memory access patterns that induce bit flips.
+
+As a defender, you do not need to be a chip designer.  
+You need to:
+
+- Recognise when a risk is truly "hardware level".
+- Understand why certain mitigations (like KASLR, SMEP, Spectre patches) exist.
+- Map vulnerability descriptions back to underlying CPU behaviors.
+
+---
+
+## How CyberGuard Core™ Uses This Knowledge
+
+In the **CyberGuard Core™** assessment, CPU internals shape how we:
+
+- Evaluate your OS and hypervisor configuration.
+- Review memory and execution protections (DEP, ASLR, SMEP, SMAP where applicable).
+- Interpret vulnerability scan results that mention speculative execution or microarchitectural flaws.
+- Recommend realistic mitigations for your hardware and OS combination.
+
+Example outcomes:
+
+- Clear explanation of whether a given side channel class is realistically exploitable in your environment.
+- Prioritised hardening steps that match your CPU generation and OS stack.
+- Plain language messaging you can pass to non-technical stakeholders.
+
+---
+
+## Summary And Next Steps
+
+You now have:
+
+- A mental model of how the CPU executes instructions.
+- Awareness of pipelines, caches and privilege levels as security relevant features.
+- A mapping between CPU design choices and exploit / detection classes.
+
+Suggested next docs:
+
+- **Memory Layout & Address Spaces**
+- **System Calls & Kernel Transitions**
+- **Privilege Escalation 101**
+- **SIEM Fundamentals** - to see where CPU level issues show up in logs.

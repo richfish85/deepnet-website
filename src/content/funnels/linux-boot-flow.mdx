@@ -1,0 +1,125 @@
+---
+doc_slug: "linux-boot-flow"
+product_slug: "cyberguard-core"
+video_title: "Linux Boot Flow Explained: Firmware → Kernel → Userspace"
+thumbnail_hook: "Linux doesn’t just 'start' — it hands off control through six security-critical stages."
+---
+
+## Video Script Outline
+
+### 1. Hook (0:00–0:20)
+Lines you can use:
+
+- “Linux boot flow isn’t random. It’s a chain of trust — or a chain of risk.”
+- “If attackers compromise Linux early, nothing you run afterward matters.”
+
+Visuals:  
+UEFI → GRUB → kernel → initramfs → systemd.
+
+---
+
+### 2. The Problem (0:20–1:15)
+
+Viewers struggle with:
+
+- the difference between GRUB and systemd  
+- what initramfs actually *does*  
+- where kernel parameters matter  
+- how persistence works in Linux  
+
+They often treat Linux like a black box, which makes them blind to boot-stage attacks.
+
+---
+
+### 3. Core Teaching (1:15–5:30)
+
+Explain each phase in one tight, intuitive sentence:
+
+1. **Firmware**  
+   - Hardware initialized, bootloader chosen, trust anchor established.
+
+2. **Bootloader (GRUB)**  
+   - Loads the kernel + initramfs, passes boot parameters.
+
+3. **Kernel Loading**  
+   - CPU transitions modes, memory manager activates, early drivers are prepared.
+
+4. **Initramfs**  
+   - Temporary userspace that mounts the real root filesystem.
+
+5. **systemd / Init**  
+   - PID 1 starts services, networking, logs, and overall service orchestration.
+
+6. **User Session**  
+   - Shells, desktops, SSH; normal operations begin.
+
+One crystal-clear example:
+
+- How a malicious initramfs can capture disk encryption passwords.
+
+---
+
+### 4. Security Angle (5:30–6:30)
+
+- Bootloaders can disable SELinux/AppArmor.  
+- Kernel parameters can neuter security.
+- Initramfs integrity is critical but often overlooked.
+- systemd unit files are a goldmine for persistence.
+
+Key line:
+
+- “Linux gives you power. Misconfiguring boot or early userspace gives attackers even more.”
+
+---
+
+### 5. Soft CTA (6:30–7:00)
+
+**General audience:**  
+“For clean diagrams and the full breakdown, check the Linux Boot Flow guide on DeepNet Docs.”
+
+**Business audience:**  
+“For Melbourne-based SMBs, this is part of how CyberGuard Core evaluates real security posture — not just surface-level checks.”
+
+---
+
+## Medium Article Outline
+
+### Title Options
+- “Linux Boot Sequence: A Practical Guide for Security Analysts”
+- “UEFI to systemd: How Linux Really Boots (and Where It Breaks)”
+- “Understanding Linux Boot Flow Makes You a Better Defender”
+
+### Structure
+1. Intro: boot flow as a trust chain  
+2. Firmware + Secure Boot explained simply  
+3. GRUB as the control handoff  
+4. Kernel loading + parameters  
+5. Initramfs role and risks  
+6. systemd forensics  
+7. Defender priorities  
+8. CTA → DeepNet docs  
+9. Soft CTA → CyberGuard Core  
+
+---
+
+## X / Twitter Ideas
+
+### Thread 1: Linux Boot in 8 Tweets
+
+1. Linux doesn’t “just start”.  
+2. Firmware initializes hardware and picks the loader.  
+3. GRUB loads kernel + initramfs.  
+4. Kernel activates memory + CPU modes.  
+5. initramfs handles drivers + encrypted disks.  
+6. systemd starts services and logs.  
+7. Attackers love early boot footholds.  
+8. Link → Linux Boot Flow doc.
+
+---
+
+### Micro-post
+“initramfs is the most misunderstood security component in Linux.  
+If an attacker tampers with it, you’re owned before your OS even mounts.”
+
+CTA link to doc.
+
