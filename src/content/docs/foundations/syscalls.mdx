@@ -8,4 +8,26 @@ duration: "25 min"
 level: "Intermediate"
 ---
 
-Trace syscall boundaries to understand where EDR, hooks, and sandbox evasion live.
+Syscalls are the contract between userland and the kernel. Understanding them shows where EDR hooks live and where attackers try to bypass instrumentation.
+
+## How syscalls flow
+- User mode API → ntdll/libc thunk → CPU switches to ring 0 (sysenter/syscall/int 0x2e).
+- Kernel validates arguments, tokens, capabilities, then touches objects (files, registry, sockets, processes).
+- Return path sets status codes—log both success and failure for better signal.
+
+## Key families to know
+- Process/Thread: `NtCreateProcessEx`, `NtCreateThreadEx`, `NtQueueApcThread`, `ptrace`.
+- Memory: `NtAllocateVirtualMemory`, `NtProtectVirtualMemory`, `mmap/mprotect`, `NtWriteVirtualMemory`.
+- I/O: `NtCreateFile`, `NtSetValueKey`, `socket/connect`, `read/write`, `DeviceIoControl`.
+- Token/Security: `NtOpenProcessToken`, `NtAdjustPrivilegesToken`, `setresuid/setreuid`.
+
+## Detection angles
+- Sequence analysis beats single calls: `Allocate` → `Write` → `Protect RWX` → `CreateThread` is classic injection.
+- Unbacked executable mappings or RW→RX flips without a module load.
+- Token abuse: privilege adjustment followed quickly by sensitive process/thread opens.
+- Direct syscalls to dodge userland hooks (unbacked ntdll, custom stubs) + uncommon syscall IDs.
+
+## Hardening and logging
+- Enable ETW/Windows 11 advanced syscall telemetry where available; on Linux, auditd/ebpf for `ptrace`, `clone`, `mmap`, `mprotect`.
+- Block or alert on unsigned drivers exposing arbitrary `DeviceIoControl` (IOCTL) to ring 3.
+- Pair syscall logs with image loads, parent/child, and code origins to reduce noise.

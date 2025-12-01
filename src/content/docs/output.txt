@@ -1,0 +1,45 @@
+Folder PATH listing for volume OS
+Volume serial number is 30CB-2021
+C:.
+|   output.txt
+|   
++---blue-team
+|       detection-engineering-101.mdx
+|       incident-response-101.mdx
+|       siem-fundamentals.mdx
+|       siem-intro.mdx
+|       
++---deepnet-method
+|       adhd-friendly-study.mdx
+|       breaking-into-soc.mdx
+|       learning-path-cybersec.mdx
+|       
++---design
+|       prompt-example.txt
+|       visual-style.md
+|       
++---foundations
+|       cpu-internals.mdx
+|       filesystems.mdx
+|       linux-boot.mdx
+|       memory-layout.mdx
+|       processes-and-threads.mdx
+|       syscalls.mdx
+|       windows-boot.mdx
+|       
++---labs
+|       ad-lab-overview.mdx
+|       ad-lab-setup.mdx
+|       ad-lab-walkthrough.mdx
+|       ctf-mini-challenge.mdx
+|       honeypot-lab-intro.mdx
+|       malware-lab-intro.mdx
+|       siem-lab-intro.mdx
+|       siem-lab-walkthrough.mdx
+|       
+\---red-team
+        persistence-techniques.mdx
+        privilege-escalation-101.mdx
+        recon-101.mdx
+        vuln-research-101.mdx
+        

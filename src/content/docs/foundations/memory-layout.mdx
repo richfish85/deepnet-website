@@ -8,4 +8,25 @@ duration: "18 min"
 level: "Beginner"
 ---
 
-Map stack, heap, and shared segments to anchor exploit and telemetry discussions.
+Know where code and data live so exploit chains and defensive controls make sense.
+
+## Segments at a glance
+- **Text/code**: executable, read-only; verify signatures + module list.
+- **Data/BSS**: globals; rarely change at runtime.
+- **Heap**: dynamic allocations; watch for large or RWX regions.
+- **Stacks**: per-thread; monitor for tiny stacks (fibers) or stack pivots.
+- **Mapped files / shared memory**: DLLs, config blobs, IPC mailboxes.
+
+## Windows vs. Linux differences
+- Windows: PE sections + VADs; look for `PAGE_EXECUTE_READWRITE` and private image sections.
+- Linux: ELF segments + `/proc/<pid>/maps`; NX+PIE should be enabled; check anonymous executable maps.
+
+## Telemetry cues
+- Module load list vs. thread start address; thread executing outside loaded modules is suspicious.
+- Sudden RW → RX flips (`VirtualProtect`, `mprotect`) near unbacked regions.
+- Shared memory handles used across unrelated processes (IPC or injection).
+
+## Detection starters
+- Alert when executable private mappings appear in userland.
+- Flag memory perms changes followed by thread creation in same range.
+- Correlate module loads from temp/user-writeable paths.

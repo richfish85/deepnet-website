@@ -8,4 +8,34 @@ duration: "22 min"
 level: "Intermediate"
 ---
 
-Understand how schedulers orchestrate work units so you can spot abuse patterns and deadlocks.
+Processes own resources; threads are the workers. This doc ties OS theory back to detection and tradecraft so you can spot abuse patterns in telemetry.
+
+## Why it matters
+- Process boundaries: memory space, handles, security token, environment.
+- Thread boundaries: instruction pointer, stack, CPU time, impersonation.
+- Scheduling signals behavior: CPU hoarding, priority inversion, and stealthy long sleepers.
+
+## Life cycle (Windows / Linux)
+- Create: `CreateProcess/execve` sets token, environment, working dir; watch image paths, parents, args.
+- Thread start: `CreateRemoteThread/pthread_create`; TID carries stack + start address; correlate to module.
+- Run/Wait: transitions show mutex races, Event/Condition waits; long waits with sporadic bursts can indicate implants.
+- Exit: exit codes + `WaitForSingleObject`/`waitpid` timing help cluster related processes (stager → payload).
+
+## Memory layout checkpoints
+- Code, heap, stacks per thread, shared libs; cross-check allocations vs. modules to catch RWX or shellcode.
+- Handle tables: tokens, section objects, events—great for lateral correlation across processes.
+
+## Telemetry tells
+- Parent/child + command-line, image hash, signed/unsigned.
+- Thread start address in non-module region → likely injected.
+- Token switches on a thread (impersonation) vs. process token.
+- CPU bursts + thread churn from a “quiet” process (abuse).
+
+## Detection ideas
+- Alert on threads starting in private RWX, or in non-loaded modules.
+- Flag remote thread creation into signed binaries from low-priv parents.
+- Watch token theft patterns: OpenProcessToken → DuplicateToken → SetThreadToken.
+
+## Hardening quick wins
+- Enforce ASLR/CFG, block non-Microsoft-signed drivers, lock down SeDebugPrivilege.
+- Enable ETW/Perf tracing for thread start addresses in sensitive servers.
